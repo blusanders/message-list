@@ -19,6 +19,7 @@ const render = messageArray => {
         const messageHTML = Message(messageObject)
         return messageHTML
     })
+    // console.log(convertedMessages);
     const combinedSections = convertedMessages.join("")
     contentTarget.innerHTML = combinedSections
 }
@@ -27,13 +28,11 @@ const render = messageArray => {
     Color the messages when one of the buttons in the ThemeButtons
     component is clicked.
 */
-document.querySelector(".themes").addEventListener("click", e => {
-    const idOfClickedElement = e.target.id
+const eventHub = document.querySelector(".container")
 
-    if (idOfClickedElement.startsWith("themeButton--")) {
-        const [prefix, color] = idOfClickedElement.split("--")
-        contentTarget.classList = []
-        contentTarget.classList.add(color)
-    }
+eventHub.addEventListener("colorChosen", event => {
+    const color = event.detail.color
+
+    contentTarget.classList = []
+    contentTarget.classList.add(color)
 })
-
